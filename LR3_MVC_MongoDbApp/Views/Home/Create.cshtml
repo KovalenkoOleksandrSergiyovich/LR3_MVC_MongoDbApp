@@ -1,0 +1,36 @@
+﻿@model LR3_MVC_MongoDbApp.Models.Computer
+
+@{
+	ViewBag.Title = "Нова модель";
+}
+<h2>Нова модель</h2>
+@using (Html.BeginForm())
+{
+	@Html.AntiForgeryToken()
+	<div>
+		@Html.ValidationSummary(true)
+		<div>
+			@Html.LabelFor(model => model.Name)
+			<div>
+				@Html.EditorFor(model => model.Name)
+				@Html.ValidationMessageFor(model => model.Name)
+			</div>
+		</div>
+		<div>
+			@Html.LabelFor(model => model.Year)
+			<div>
+				@Html.EditorFor(model => model.Year)
+				@Html.ValidationMessageFor(model => model.Year)
+			</div>
+		</div>
+		<div>
+			<input type="submit" value="Додати"/>
+		</div>
+	</div>
+}
+<div>
+	@Html.ActionLink("Повернутися до списку","Index")
+</div>
+@section Scripts{
+	@Scripts.Render("~/bundles/jqueryval")
+}

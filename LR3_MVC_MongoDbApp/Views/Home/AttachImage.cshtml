@@ -1,0 +1,33 @@
+﻿@model LR3_MVC_MongoDbApp.Models.Computer
+@{
+    ViewBag.Title = "Прикріпити зображення";
+}
+
+<h2>Прикріпити зображення</h2>
+
+@using (Html.BeginForm(null, null, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    <div>
+        @Html.ValidationSummary(true)
+        <div>
+            @Html.LabelFor(model => model.Name)
+            <div>@Model.Name</div>
+        </div>
+        <div>
+            @Html.LabelFor(model => model.ImageId, "Завантажити зображення")
+            <div>
+                <input type="file" name="uploadedFile" id="uploadedFile" />
+            </div>
+        </div>
+        <div>
+            <div>
+                <input type="submit" value="Додати" />
+            </div>
+        </div>
+    </div>
+}
+@if (Model.HasImage())
+{
+    <img src="@Url.Action("GetImage", new {id=Model.ImageId})" />
+}

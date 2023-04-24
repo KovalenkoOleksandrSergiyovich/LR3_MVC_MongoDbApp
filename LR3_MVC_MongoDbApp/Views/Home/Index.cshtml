@@ -1,0 +1,37 @@
+﻿@model LR3_MVC_MongoDbApp.Models.ComputerList
+
+@{
+	ViewBag.Title = "Список комп'ютерів";
+}
+
+<h2>Список комп'ютерів</h2>
+@using (Html.BeginForm())
+{
+	<label for="ComputerName">Пошук за відповідністю</label>
+	<input type="text" name="ComputerName" value="@Model.Filter.ComputerName"/>
+	<label for="Year">Пошук за роком</label>
+	<input type="text" name="Year" value="@Model.Filter.Year"/>
+	<input type = "submit" value="Пошук"/>
+}
+<p>
+	@Html.ActionLink("Додати","Create")
+</p>
+	<table class="table">
+			<tr>
+				<th>Модель</th>
+				<th>Рік</th>
+				<th></th>
+			</tr>
+			@foreach(var item in Model.Computers)
+			{
+			<tr>
+				<td>@Html.DisplayFor(modelItem=>item.Name)</td>
+				<td>@Html.DisplayFor(modelItem=>item.Year)</td>
+				<td>
+					@Html.ActionLink("Змінити","Edit",new {id=item.Id})|
+					@Html.ActionLink("Видалити","Delete",new {id=item.Id})|
+					@Html.ActionLink("Зображення","AttachImage",new {id=item.Id})
+				</td>
+			</tr>
+		}
+		</table>

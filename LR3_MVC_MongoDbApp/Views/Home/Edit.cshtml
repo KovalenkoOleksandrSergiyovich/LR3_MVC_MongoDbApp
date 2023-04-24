@@ -1,0 +1,31 @@
+﻿@model LR3_MVC_MongoDbApp.Models.Computer
+@{
+    ViewBag.Title = "Редагувати модель";
+}
+
+<h2>Редагувати модель</h2>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div>
+        @Html.ValidationSummary(true)
+        @Html.HiddenFor(model => model.Id)
+        <div>
+            @Html.LabelFor(model => model.Name)
+            <div>
+                @Html.EditorFor(model => model.Name)
+                @Html.ValidationMessageFor(model => model.Name)
+            </div>
+        </div>
+        <div>
+            @Html.LabelFor(model => model.Year)
+            <div>
+                @Html.EditorFor(model => model.Year)
+                @Html.ValidationMessageFor(model => model.Year)
+            </div>
+        </div>
+        <div>
+            <input type="submit" value="Змінити" />
+        </div>
+    </div>
+}
